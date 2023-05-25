@@ -1,0 +1,27 @@
+name: Planar Release
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  breakpoint:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+      - name: Execute breakpoint
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        uses: ./
+        with:
+          duration: 30m
+          authorized-users: hugosantos
+          webhook-definition: ./.github/slack-notification.json

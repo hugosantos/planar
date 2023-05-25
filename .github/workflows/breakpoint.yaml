@@ -20,7 +20,7 @@ jobs:
       - name: Execute breakpoint
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        uses: ./
+        uses: namespacelabs/breakpoint-action@v0
         with:
           duration: 30m
           authorized-users: hugosantos
